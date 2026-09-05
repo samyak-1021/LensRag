@@ -1,0 +1,27 @@
+# Render Blueprint — a free-tier-friendly starting point for a live demo.
+# Deploy the API + Postgres here; the frontend deploys cleanly to Vercel (set
+# NEXT_PUBLIC_API_URL to the Render API URL). See DESIGN.md for the full note.
+databases:
+  - name: lensrag-db
+    plan: free
+    postgresMajorVersion: "16"
+
+services:
+  - type: web
+    name: lensrag-api
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      # Render exposes a `postgres://` URL; config.py rewrites it to the asyncpg
+      # driver, so the database wires up automatically — no manual fix-up needed.
+      - key: LENSRAG_DATABASE_URL
+        fromDatabase:
+          name: lensrag-db
+          property: connectionString
+      - key: LENSRAG_LLM_PROVIDER
+        value: mock # set to `gemini` + add LENSRAG_GEMINI_API_KEY for real answers
+      - key: LENSRAG_CORS_ORIGINS
+        value: "*"
