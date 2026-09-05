@@ -35,8 +35,7 @@ def test_embedding_dim_and_l2_normalisation():
     emb = HashEmbedder(dim=384)
     vec = emb.embed(["employees grew in 2023"])[0]
     assert len(vec) == 384
-    # Non-empty content text -> unit vector.
-    assert _norm(vec) == round(_norm(vec), 6)  # sanity: finite
+    # Non-empty content text -> unit vector (tolerance, since float32 norm is ~1.0).
     assert abs(_norm(vec) - 1.0) < 1e-5
 
 
