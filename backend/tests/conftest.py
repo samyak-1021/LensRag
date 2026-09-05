@@ -15,7 +15,9 @@ import tempfile
 # One session-scoped temp dir holds both the SQLite file and the rendered page
 # images; tests upload their own documents, so ordering between tests is moot.
 _TMP = tempfile.mkdtemp(prefix="lensrag-tests-")
-os.environ["LENSRAG_DATABASE_URL"] = f"sqlite+aiosqlite:///{_TMP}/test.db"
+# setdefault so CI can point the suite at Postgres (portability job); locally it
+# falls back to an isolated SQLite file.
+os.environ.setdefault("LENSRAG_DATABASE_URL", f"sqlite+aiosqlite:///{_TMP}/test.db")
 os.environ["LENSRAG_STORAGE_DIR"] = f"{_TMP}/storage"
 # Force the offline providers so the suite is hermetic even if a real .env exists.
 os.environ["LENSRAG_LLM_PROVIDER"] = "mock"

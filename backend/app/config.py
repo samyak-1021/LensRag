@@ -10,7 +10,7 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # Repo-relative paths so storage lands next to the backend regardless of CWD.
@@ -64,6 +64,17 @@ class Settings(BaseSettings):
     # Tuned for the default hash embedder (see the threshold sweep in DESIGN.md).
     # With real BGE/Gemini, raise toward ~0.4 since relevant cosines run higher.
     guard_min_score: float = Field(default=0.25, ge=0.0, le=1.0)
+
+    @field_validator("database_url")
+    @classmethod
+    def _use_async_driver(cls, value: str) -> str:
+        """Managed Postgres (Render/Neon/Heroku) hands out ``postgres://`` URLs, but
+        SQLAlchemy's async engine needs the asyncpg driver — rewrite it so those
+        platforms work with no manual fix-up."""
+        for prefix in ("postgres://", "postgresql://"):
+            if value.startswith(prefix):
+                return "postgresql+asyncpg://" + value[len(prefix) :]
+        return value
 
     @property
     def cors_origin_list(self) -> list[str]:

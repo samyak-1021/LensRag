@@ -1,8 +1,8 @@
 """Async database engine + session management.
 
 The ORM stays portable across SQLite (local/tests) and Postgres (production) by
-avoiding backend-specific column types — vectors live in the vector-index layer
-(see ``app/services/vector_index.py``), not in an ORM column.
+avoiding backend-specific column types — embeddings are stored as JSON and searched
+in the retrieval layer (see ``app/services/retrieval.py``), not via a vector column.
 """
 
 from __future__ import annotations
