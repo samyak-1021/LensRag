@@ -28,7 +28,7 @@ export default function DocumentCard({
   return (
     <Card className="group overflow-hidden">
       <Link href={`/library/${doc.id}`} className="block">
-        <div className="flex h-40 items-center justify-center overflow-hidden border-b border-black/5 bg-surface-muted">
+        <div className="flex h-40 items-center justify-center overflow-hidden border-b border-white/10 bg-surface-muted">
           {doc.status === "ready" && !thumbBroken ? (
             // Page 1 thumbnail, served directly from the backend storage mount.
             // eslint-disable-next-line @next/next/no-img-element

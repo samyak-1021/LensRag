@@ -26,7 +26,7 @@ export default function PageViewer({
       : null;
 
   return (
-    <figure className="overflow-hidden rounded-2xl border border-black/5 bg-surface-muted">
+    <figure className="overflow-hidden rounded-2xl border border-white/10 bg-surface-muted">
       <div className="relative">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={assetUrl(src)} alt={caption ?? "Document page"} className="block w-full" />
@@ -38,7 +38,7 @@ export default function PageViewer({
         )}
       </div>
       {caption && (
-        <figcaption className="border-t border-black/5 px-3 py-2 text-xs text-ink-soft">
+        <figcaption className="border-t border-white/10 px-3 py-2 text-xs text-ink-soft">
           {caption}
         </figcaption>
       )}

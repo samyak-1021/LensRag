@@ -85,7 +85,7 @@ export default function AnswerCard({
                     "rounded-full border px-2.5 py-1 text-xs font-medium transition",
                     active
                       ? "border-accent bg-accent-soft text-accent"
-                      : "border-black/10 bg-surface text-ink-soft hover:text-ink",
+                      : "border-white/10 bg-surface text-ink-soft hover:text-ink",
                   )}
                 >
                   p.{c.page_number} · {percent(c.score)}

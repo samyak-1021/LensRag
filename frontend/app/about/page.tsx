@@ -69,7 +69,7 @@ export default function AboutPage() {
         <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold tracking-tight">
           <Layers size={18} className="text-accent" /> The stack
         </h2>
-        <Card className="divide-y divide-black/5 p-2">
+        <Card className="divide-y divide-white/10 p-2">
           {STACK.map(([label, value]) => (
             <div key={label} className="grid grid-cols-3 gap-4 px-4 py-3 text-sm">
               <span className="font-medium">{label}</span>

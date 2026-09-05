@@ -89,14 +89,14 @@ export default function AskPage() {
           }}
           rows={2}
           placeholder="e.g. According to the chart, what was quarterly revenue in Q1?"
-          className="w-full resize-none rounded-2xl border border-black/10 bg-surface px-4 py-3 text-[15px] outline-none placeholder:text-ink-soft/70 focus:border-accent"
+          className="w-full resize-none rounded-2xl border border-white/10 bg-surface px-4 py-3 text-[15px] outline-none placeholder:text-ink-soft/70 focus:border-accent"
         />
 
         <div className="flex flex-wrap items-center gap-3">
           <select
             value={docId}
             onChange={(e) => setDocId(e.target.value)}
-            className="rounded-2xl border border-black/10 bg-surface px-3 py-2 text-sm outline-none focus:border-accent"
+            className="rounded-2xl border border-white/10 bg-surface px-3 py-2 text-sm outline-none focus:border-accent"
           >
             <option value="">All documents ({docs.length})</option>
             {docs.map((d) => (
@@ -120,7 +120,7 @@ export default function AskPage() {
               key={s}
               type="button"
               onClick={() => setQuestion(s)}
-              className="rounded-full border border-black/10 bg-surface px-3 py-1 text-xs text-ink-soft transition hover:border-accent/40 hover:text-ink"
+              className="rounded-full border border-white/10 bg-surface px-3 py-1 text-xs text-ink-soft transition hover:border-accent/40 hover:text-ink"
             >
               {s}
             </button>

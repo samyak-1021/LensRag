@@ -18,7 +18,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-3xl bg-surface border border-black/5 shadow-card",
+        "rounded-3xl bg-surface border border-white/10 shadow-card",
         className,
       )}
     >
@@ -31,8 +31,8 @@ type Variant = "primary" | "secondary" | "ghost" | "danger";
 
 const VARIANTS: Record<Variant, string> = {
   primary: "bg-accent text-white hover:bg-accent-hover shadow-soft",
-  secondary: "bg-surface-muted text-ink hover:bg-black/5 border border-black/5",
-  ghost: "text-ink-soft hover:text-ink hover:bg-black/5",
+  secondary: "bg-surface-muted text-ink hover:bg-white/10 border border-white/10",
+  ghost: "text-ink-soft hover:text-ink hover:bg-white/10",
   danger: "bg-bad/10 text-bad hover:bg-bad/15",
 };
 
@@ -131,7 +131,7 @@ export function EmptyState({
   action?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-black/10 bg-surface/60 px-6 py-16 text-center">
+    <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-surface/60 px-6 py-16 text-center">
       {icon && <div className="mb-3 text-ink-soft">{icon}</div>}
       <div className="text-base font-medium">{title}</div>
       {description && (
@@ -152,7 +152,7 @@ export function SegmentedControl<T extends string>({
   onChange: (value: T) => void;
 }) {
   return (
-    <div className="inline-flex rounded-2xl border border-black/5 bg-surface-muted p-1">
+    <div className="inline-flex rounded-2xl border border-white/10 bg-surface-muted p-1">
       {options.map((o) => (
         <button
           key={o.value}

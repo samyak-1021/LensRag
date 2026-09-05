@@ -55,7 +55,7 @@ export default function UploadDropzone({
           "flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed px-6 py-12 text-center transition",
           dragging
             ? "border-accent bg-accent-soft"
-            : "border-black/10 bg-surface hover:border-accent/50",
+            : "border-white/10 bg-surface hover:border-accent/50",
         )}
       >
         {busy ? (

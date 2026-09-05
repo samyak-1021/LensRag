@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
-  @apply bg-surface-muted text-ink antialiased;
+  @apply text-ink antialiased;
+  /* Darkest base; elevated cards (bg-surface) sit above it for depth. */
+  background-color: #0b0b0d;
   font-feature-settings: "kern";
 }
 
@@ -24,7 +26,7 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.16);
+  background: rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: content-box;

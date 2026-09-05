@@ -70,7 +70,7 @@ export default function EvalsPage() {
                 {summary.is_real_run ? "real run" : "offline run"}
               </Badge>
             </div>
-            <div className="divide-y divide-black/5">
+            <div className="divide-y divide-white/10">
               {summary.metrics.map((m) => (
                 <MetricBar key={m.label} metric={m} />
               ))}
