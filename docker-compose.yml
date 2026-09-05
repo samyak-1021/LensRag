@@ -1,0 +1,54 @@
+# One-command local stack: Postgres (pgvector image), the FastAPI API, and the
+# Next.js dashboard. Generation defaults to the offline mock; pass a Gemini key to
+# switch on real chart-reading:
+#
+#   LENSRAG_LLM_PROVIDER=gemini LENSRAG_GEMINI_API_KEY=AIza... docker compose up --build
+#
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: lensrag
+      POSTGRES_PASSWORD: lensrag
+      POSTGRES_DB: lensrag
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lensrag"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      LENSRAG_DATABASE_URL: postgresql+asyncpg://lensrag:lensrag@db:5432/lensrag
+      # Exact cosine runs in-process over Postgres-stored vectors at demo scale;
+      # pgvector is the drop-in ANN index for scale (see retrieval.py + DESIGN.md).
+      LENSRAG_VECTOR_BACKEND: memory
+      LENSRAG_CORS_ORIGINS: http://localhost:3000
+      LENSRAG_LLM_PROVIDER: ${LENSRAG_LLM_PROVIDER:-mock}
+      LENSRAG_GEMINI_API_KEY: ${LENSRAG_GEMINI_API_KEY:-}
+    ports:
+      - "8000:8000"
+    volumes:
+      - storage:/app/storage
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:
+  storage:

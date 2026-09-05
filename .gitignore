@@ -14,6 +14,7 @@ venv/
 .env
 .env.*
 !.env.example
+!.env.local.example
 
 # ---- Runtime storage (uploaded PDFs + rendered page images) ----
 backend/storage/
@@ -25,6 +26,7 @@ node_modules/
 out/
 next-env.d.ts
 .turbo/
+*.tsbuildinfo
 
 # ---- Eval run outputs (the report is regenerated; keep only the committed sample) ----
 backend/eval_runs/
