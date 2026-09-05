@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-09-05T13:23:25.213397+00:00",
+  "is_real_run": false,
+  "num_questions": 110,
+  "metrics": [
+    {
+      "label": "Retrieval recall@5 \u2014 chart/table questions",
+      "text": 0.956,
+      "visual": 0.956
+    },
+    {
+      "label": "Answer accuracy \u2014 chart/table questions",
+      "text": 0.033,
+      "visual": 0.033
+    },
+    {
+      "label": "Answer accuracy \u2014 text-only questions",
+      "text": 0.5,
+      "visual": 0.5
+    },
+    {
+      "label": "Answer accuracy \u2014 all answerable questions",
+      "text": 0.0874,
+      "visual": 0.0874
+    }
+  ],
+  "guard_abstention_rate": 0.5714,
+  "notes": "Offline run with deterministic mock providers: it validates the harness end-to-end, but the chart-reading gap only appears once a real VLM (Gemini) or ColPali retriever is enabled."
+}
