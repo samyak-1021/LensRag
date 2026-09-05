@@ -1,0 +1,36 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.db
+*.sqlite3
+
+# ---- Env / secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Runtime storage (uploaded PDFs + rendered page images) ----
+backend/storage/
+storage/
+
+# ---- Node / Next.js ----
+node_modules/
+.next/
+out/
+next-env.d.ts
+.turbo/
+
+# ---- Eval run outputs (the report is regenerated; keep only the committed sample) ----
+backend/eval_runs/
+
+# ---- OS / editor ----
+.DS_Store
+.idea/
+.vscode/
+*.log
